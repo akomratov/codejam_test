@@ -1,0 +1,64 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:viz="sap.viz.ui5.controls"
+	controllerName="cj.controller.Detail"
+	xmlns:sc="sap.ui.comp.smartchart">
+	<Page id="detailPage" title="Order details">
+		<subHeader>
+			<Bar>
+				<contentLeft>
+					<Title text="{OrderID} от {path: 'OrderDate', formatter: '.dateFormatter.formatDate'}"/>
+				</contentLeft>
+				<contentRight>
+					<Button text="Invoices" press="onInvoiceButtonPressed"/>
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<IconTabBar
+				id="idIconTabBarMulti"
+				expandable="false"
+				stretchContentHeight="true"
+				applyContentPadding="true"
+				class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter
+						icon="sap-icon://table-view">
+						<Table id="orderDetailsTable" items="{path: '/Order_Details', parameters: {expand: 'Product'}}">
+							<columns>
+								<Column>
+									<Text text="ID"/>
+								</Column>
+								<Column>
+									<Text text="Product name"/>
+								</Column>
+								<Column>
+									<Text text="Price"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{ProductID}"/>
+										<Text text="{Product/ProductName}"/>
+										<Text text="{UnitPrice}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter
+						icon="sap-icon://shipping-status">
+						<core:Fragment fragmentName="cj.view.form" type="XML" />
+					</IconTabFilter>
+					<IconTabFilter
+						icon="sap-icon://area-chart">
+						<viz:VizFrame id="vizFrame" width="100%" height="100%"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+	</Page>
+</mvc:View>

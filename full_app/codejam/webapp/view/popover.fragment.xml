@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover title="Sort by">
+		<content>
+			<List mode="SingleSelect" selectionChange="onChangeSortOrder">
+				<items>
+					<ObjectListItem title="OrderID"/>
+					<ObjectListItem title="OrderDate"/>
+					<ObjectListItem title="ShippedDate"/>
+				</items>
+			</List>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,25 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" controllerName="cj.controller.Master">
+	<Page title="SAPUI5 CodeJam">
+		<content>
+			<HBox>
+				<Input value="{local>/customer}" height="60%" description="Customer" valueLiveUpdate="true"/>
+				<Button text="Filter" press="onFilterButtonPress"/>
+			</HBox>
+			<List id="list" items="{path: '/Orders', parameters: {expand: 'Customer'}}" growing="true" growingScrollToLoad="true" mode="SingleSelectMaster" selectionChange="onOrderSelect">
+				<items>
+					<ObjectListItem title="{OrderID} от {path: 'OrderDate', formatter: '.dateFormatter.formatDate'}">
+						<attributes>
+							<ObjectAttribute text="{Customer/CompanyName}, {CustomerID}"/>
+							<ObjectAttribute text="{path: 'ShippedDate', formatter: '.dateFormatter.formatDate' }"/>
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button icon="sap-icon://sort" press="onSortButtonPress"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>
